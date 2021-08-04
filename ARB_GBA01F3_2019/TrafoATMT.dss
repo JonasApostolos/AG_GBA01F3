@@ -1,0 +1,5 @@
+! TRANSFORMADORES DE ALTA PARA MEDIA TENSAO 
+New Transformer.1012334 windings=2 Phases=3 buses=[ARBGBA,GBA02T1.1.2.3.0] kVAs=[22000,22000] kVs=[69.000,13.800] conns=[delta,wye] tap=1 %Rs=1.17 XHL=3.34
+New Transformer.1228670 windings=2 Phases=3 buses=[ARBGBA,GBA02T2.1.2.3.0] kVAs=[10000,10000] kVs=[69.000,13.800] conns=[delta,wye] tap=1
+New Transformer.1239910 windings=2 Phases=3 buses=[ARBGBA,GBA02T3.1.2.3.0] kVAs=[10000,10000] kVs=[69.000,13.800] conns=[delta,wye] tap=1
+

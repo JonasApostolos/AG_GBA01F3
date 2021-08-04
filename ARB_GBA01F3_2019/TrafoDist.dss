@@ -1,0 +1,175 @@
+! TRANSFORMADORES DE DISTRIBUICAO 
+! ALIMENTADOR: 784
+New Transformer.F42122 windings=2 Phases=3 buses=[94081M784.1.2.3,94081BF42122.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42130 windings=2 Phases=3 buses=[91011M784.1.2.3,91011BF42130.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F57088 windings=2 Phases=3 buses=[430845M784.1.2.3,430845BF57088.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F38588 windings=2 Phases=3 buses=[91471M784.1.2.3,91471BF38588.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F60970 windings=2 Phases=3 buses=[430906M784.1.2.3,430906BF60970.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F42153 windings=2 Phases=3 buses=[94036M784.1.2.3,94036BF42153.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42160 windings=2 Phases=3 buses=[94156M784.1.2.3,94156BF42160.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F33769 windings=2 Phases=3 buses=[440876M784.1.2.3,440876BF33769.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42166 windings=2 Phases=3 buses=[94133M784.1.2.3,94133BF42166.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42141 windings=2 Phases=3 buses=[94070M784.1.2.3,94070BF42141.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F42148 windings=2 Phases=3 buses=[94054M784.1.2.3,94054BF42148.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42158 windings=2 Phases=3 buses=[94165M784.1.2.3,94165BF42158.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F48508 windings=2 Phases=3 buses=[91189M784.1.2.3,91189BF48508.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F42111 windings=2 Phases=3 buses=[94042M784.1.2.3,94042BF42111.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42165 windings=2 Phases=3 buses=[94129M784.1.2.3,94129BF42165.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42143 windings=2 Phases=3 buses=[94063M784.1.2.3,94063BF42143.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42115 windings=2 Phases=3 buses=[94057M784.1.2.3,94057BF42115.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42116 windings=2 Phases=3 buses=[94048M784.1.2.3,94048BF42116.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F55729 windings=2 Phases=3 buses=[421125M784.1.2.3,421125BF55729.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42117 windings=2 Phases=3 buses=[94060M784.1.2.3,94060BF42117.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F49151 windings=2 Phases=3 buses=[428555M784.1.2.3,428555BF49151.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42127 windings=2 Phases=3 buses=[94101M784.1.2.3,94101BF42127.1.2.3] kVAs=[30.0,30.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.67 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42135 windings=2 Phases=3 buses=[12820193M784.1.2.3,12820193BF42135.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F54869 windings=2 Phases=3 buses=[90904M784.1.2.3,90904BF54869.1.2.3] kVAs=[30.0,30.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.67 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F60891 windings=2 Phases=3 buses=[13438251M784.1.2.3,13438251BF60891.1.2.3] kVAs=[225.0,225.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.22 XHL=4.61
+! ALIMENTADOR: 784
+New Transformer.F42139 windings=2 Phases=3 buses=[94076M784.1.2.3,94076BF42139.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42137 windings=2 Phases=3 buses=[94074M784.1.2.3,94074BF42137.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F54355 windings=2 Phases=3 buses=[420144M784.1.2.3,420144BF54355.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42125 windings=2 Phases=3 buses=[94095M784.1.2.3,94095BF42125.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42164 windings=2 Phases=3 buses=[94138M784.1.2.3,94138BF42164.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F46482 windings=2 Phases=3 buses=[983407M784.1.2.3,983407BF46482.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F42149 windings=2 Phases=3 buses=[91417M784.1.2.3,91417BF42149.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F46481 windings=2 Phases=3 buses=[983358M784.1.2.3,983358BF46481.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42129 windings=2 Phases=3 buses=[94103M784.1.2.3,94103BF42129.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F46355 windings=2 Phases=3 buses=[420124M784.1.2.3,420124BF46355.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F45366 windings=2 Phases=3 buses=[94176M784.1.2.3,94176BF45366.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42152 windings=2 Phases=3 buses=[440646M784.1.2.3,440646BF42152.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42145 windings=2 Phases=3 buses=[94056M784.1.2.3,94056BF42145.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F46256 windings=2 Phases=3 buses=[427692M784.1.2.3,427692BF46256.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F42133 windings=2 Phases=3 buses=[94096M784.1.2.3,94096BF42133.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F42159 windings=2 Phases=3 buses=[13384834M784.1.2.3,13384834BF42159.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42119 windings=2 Phases=3 buses=[94067M784.1.2.3,94067BF42119.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F46483 windings=2 Phases=3 buses=[983401M784.1.2.3,983401BF46483.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F46262 windings=2 Phases=3 buses=[91087M784.1.2.3,91087BF46262.1.2.3] kVAs=[30.0,30.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.67 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F33515 windings=2 Phases=3 buses=[104301361M784.1.2.3,104301361BF33515.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F46615 windings=2 Phases=3 buses=[9309181M784.1.2.3,9309181BF46615.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F33516 windings=2 Phases=3 buses=[104301374M784.1.2.3,104301374BF33516.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42156 windings=2 Phases=3 buses=[94171M784.1.2.3,94171BF42156.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F46058 windings=2 Phases=3 buses=[427842M784.1.2.3,427842BF46058.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F45807 windings=2 Phases=3 buses=[104910062M784.1.2.3,104910062BF45807.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F33513 windings=2 Phases=3 buses=[104301339M784.1.2.3,104301339BF33513.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F46266 windings=2 Phases=3 buses=[9685689M784.1.2.3,9685689BF46266.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F46504 windings=2 Phases=3 buses=[1446837M784.1.2.3,1446837BF46504.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F52254 windings=2 Phases=3 buses=[12567467M784.1.2.3,12567467BF52254.1.2.3] kVAs=[225.0,225.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.07 XHL=4.53
+! ALIMENTADOR: 784
+New Transformer.F42118 windings=2 Phases=3 buses=[104146537M784.1.2.3,104146537BF42118.1.2.3] kVAs=[30.0,30.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.67 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F33514 windings=2 Phases=3 buses=[104301347M784.1.2.3,104301347BF33514.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F46631 windings=2 Phases=3 buses=[9559523M784.1.2.3,9559523BF46631.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42151 windings=2 Phases=3 buses=[94041M784.1.2.3,94041BF42151.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42124 windings=2 Phases=3 buses=[91181M784.1.2.3,91181BF42124.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42147 windings=2 Phases=3 buses=[94055M784.1.2.3,94055BF42147.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F48337 windings=2 Phases=3 buses=[90978M784.1.2.3,90978BF48337.1.2.3] kVAs=[30.0,30.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.67 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F60875 windings=2 Phases=3 buses=[430966M784.1.2.3,430966BF60875.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F33308 windings=2 Phases=3 buses=[104310440M784.1.2.3,104310440BF33308.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42161 windings=2 Phases=3 buses=[94144M784.1.2.3,94144BF42161.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F38422 windings=2 Phases=3 buses=[12054628M784.1.2.3,12054628BF38422.1.2.3] kVAs=[15.0,15.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.78 XHL=2.96
+! ALIMENTADOR: 784
+New Transformer.F45838 windings=2 Phases=3 buses=[512419M784.1.2.3,512419BF45838.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42113 windings=2 Phases=3 buses=[94043M784.1.2.3,94043BF42113.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F46484 windings=2 Phases=3 buses=[983393M784.1.2.3,983393BF46484.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F42138 windings=2 Phases=3 buses=[94083M784.1.2.3,94083BF42138.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F46261 windings=2 Phases=3 buses=[420218M784.1.2.3,420218BF46261.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42110 windings=2 Phases=3 buses=[104146704M784.1.2.3,104146704BF42110.1.2.3] kVAs=[15.0,15.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.78 XHL=2.96
+! ALIMENTADOR: 784
+New Transformer.F46485 windings=2 Phases=3 buses=[983382M784.1.2.3,983382BF46485.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F33001 windings=2 Phases=3 buses=[90888M784.1.2.3,90888BF33001.1.2.3] kVAs=[30.0,30.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.67 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42136 windings=2 Phases=3 buses=[91080M784.1.2.3,91080BF42136.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F44202 windings=2 Phases=3 buses=[94077M784.1.2.3,94077BF44202.1.2.3] kVAs=[45.0,45.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.5 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42128 windings=2 Phases=3 buses=[94105M784.1.2.3,94105BF42128.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.27 XHL=3.39
+! ALIMENTADOR: 784
+New Transformer.F42132 windings=2 Phases=3 buses=[94098M784.1.2.3,94098BF42132.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42157 windings=2 Phases=3 buses=[94160M784.1.2.3,94160BF42157.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F42142 windings=2 Phases=3 buses=[94073M784.1.2.3,94073BF42142.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.46
+! ALIMENTADOR: 784
+New Transformer.F33174 windings=2 Phases=3 buses=[104132278M784.1.2.3,104132278BF33174.1.2.3] kVAs=[2250.0,2250.0] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F38180 windings=2 Phases=3 buses=[10305457M784.1.2.3,10305457BF38180.1.2.3] kVAs=[112.5,112.5] kVs=[13.800,0.220] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F57665 windings=2 Phases=3 buses=[12931736M784.1.2.3,12931736BF57665.1.2.3] kVAs=[225.0,225.0] kVs=[13.800,0.127] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42150 windings=2 Phases=3 buses=[94046M784.1.2.3,94046BF42150.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.127] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42112 windings=2 Phases=3 buses=[94037M784.1.2.3,94037BF42112.1.2.3] kVAs=[75.0,75.0] kVs=[13.800,0.127] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F45325 windings=2 Phases=3 buses=[94082M784.1.2.3,94082BF45325.1.2.3] kVAs=[15.0,15.0] kVs=[13.800,0.127] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42144 windings=2 Phases=3 buses=[94059M784.1.2.3,94059BF42144.1.2.3] kVAs=[150.0,150.0] kVs=[13.800,0.127] conns=[delta,wye] %Rs=1.17 XHL=3.34
+! ALIMENTADOR: 784
+New Transformer.F42121 windings=2 Phases=3 buses=[94072M784.1.2.3,94072BF42121.1.2.3] kVAs=[225.0,225.0] kVs=[13.800,0.127] conns=[delta,wye] %Rs=1.17 XHL=3.34

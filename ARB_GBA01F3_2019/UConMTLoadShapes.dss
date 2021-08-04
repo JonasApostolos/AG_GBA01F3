@@ -1,0 +1,7 @@
+! UNIDADES CONSUMIDORAS DE MEDIA TENSAO  - CURVAS DE CARGA
+Edit Load.4258 daily=MT-Tipo10
+Edit Load.4895 daily=MT-Tipo5
+Edit Load.5903 daily=MT-Tipo4
+Edit Load.13873 daily=MT-Tipo10
+Edit Load.13911 daily=MT-Tipo2
+Edit Load.15273 daily=MT-Tipo7

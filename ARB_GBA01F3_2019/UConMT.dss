@@ -1,0 +1,9 @@
+! UNIDADES CONSUMIDORAS DE MEDIA TENSAO 
+New Load.4258 Bus1=10305457M784.1.2.3 Phases=3 model=8 ZIPV=[0.5 0 0.5 0 0 1 0] Kv=13.800 kW=68.0 PF=0.92 conn=delta
+New Load.4895 Bus1=94059M784.1.2.3 Phases=3 model=8 ZIPV=[0.5 0 0.5 0 0 1 0] Kv=13.800 kW=75.0 PF=0.92 conn=delta
+New Load.5903 Bus1=983401M784.1.2.3 Phases=3 model=8 ZIPV=[0.5 0 0.5 0 0 1 0] Kv=13.800 kW=14.93 PF=0.92 conn=delta
+New Load.13873 Bus1=12931736M784.1.2.3 Phases=3 model=8 ZIPV=[0.5 0 0.5 0 0 1 0] Kv=13.800 kW=327.07 PF=0.92 conn=delta
+New Load.13911 Bus1=94037M784.1.2.3 Phases=3 model=8 ZIPV=[0.5 0 0.5 0 0 1 0] Kv=13.800 kW=64.0 PF=0.92 conn=delta
+New Load.15273 Bus1=104132278M784.1.0 Phases=1 model=8 ZIPV=[0.5 0 0.5 0 0 1 0] Kv=13.800 kW=903.84 PF=0.92 conn=delta
+! Sumário Rápido das Cargas
+! Somatório das potências das cargas sem curva de carga
