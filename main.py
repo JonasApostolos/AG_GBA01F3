@@ -27,9 +27,9 @@ class DSS(object):  # Classe DSS
         self.results_path = self.OpenDSS_folder_path + "/results_Main"
         self.dss.text("set DataPath=" + self.results_path)
 
-        # Monitores
-        for load in self.dss.loads_allnames():
-            self.dss.text("New Monitor." + load + " Element=Load." + load + " mode=32 terminal=1")
+        # # Monitores
+        # for load in self.dss.loads_allnames():
+        #     self.dss.text("New Monitor." + load + " Element=Load." + load + " mode=32 terminal=1")
 
         LoadshapePointsList = [round(ctd, 2) for ctd in list(numpy.arange(-1.0, 1.05, 0.05))]
         Loadshape = [LoadshapePointsList[ctd] for ctd in solucao[2:]]
@@ -56,11 +56,13 @@ class DSS(object):  # Classe DSS
 
         # self.dss.text("export eventlog")
         self.dss.text("export meters")
-        self.dss.text("export monitor Potencia_Feeder")
-        self.dss.text("export monitor Storage")
-
-        for load in self.dss.loads_allnames():
-            self.dss.text("export monitor " + load)
+        for monitor in self.dss.monitors_allnames():
+            self.dss.text("export monitor " + monitor)
+        # self.dss.text("export monitor Potencia_Feeder")
+        # self.dss.text("export monitor Storage")
+        #
+        # for load in self.dss.loads_allnames():
+        #     self.dss.text("export monitor " + load)
 
     def funcaoCusto(self, solucao, kWRatedList, barras, porcentagem_prosumidores):
         self.compile_DSS()
@@ -101,7 +103,7 @@ class DSS(object):  # Classe DSS
 
         # CICLO DE CARGA DA BATERIA
         # É preciso garantir que ao final das 48h o nível de carregamento da bateria seja o mesmo do inicio da simulacao
-        Carregamento48h, PunicaoCicloCarga = self.PunicaoCiclodeCarga(solucao, kwHRatedList)
+        Carregamento48h, PunicaoCicloCarga = self.PunicaoCiclodeCarga()
 
         # PERDAS
         ### Acessando arquivo CSV Potência
@@ -306,21 +308,19 @@ class DSS(object):  # Classe DSS
         self.results_path = self.OpenDSS_folder_path + "/results_Main"
         self.dss.text("set DataPath=" + self.results_path)
 
-        # Monitores
-        for load in self.dss.loads_allnames():
-            self.dss.text("New Monitor." + load + " Element=Load." + load + " mode=32 terminal=1")
-
         self.dss.text("Storage.storage.enabled=no")
         self.dss.text("Redirect PVSystems_" + str(porcentagem_prosumidores) + ".dss")
 
         self.dss.text("Solve")
         # self.dss.text("Plot monitor object= potencia_feeder channels=(1 3 5 )")
+        print("Solved")
 
+        for monitor in self.dss.monitors_allnames():
+            self.dss.text("export monitor " + monitor)
         self.dss.text("export meters")
-        self.dss.text("export monitor Potencia_Feeder")
-
-        for load in self.dss.loads_allnames():
-            self.dss.text("export monitor " + load)
+        # self.dss.text("export monitor Potencia_Feeder")
+        # for load in self.dss.loads_allnames():
+        #     self.dss.text("export monitor " + load)
 
         ### Acessando arquivo CSV Potência
         dataEnergymeterCSV = {}
@@ -422,7 +422,7 @@ class DSS(object):  # Classe DSS
 
         # CICLO DE CARGA DA BATERIA
         # É preciso garantir que ao final das 48h o nível de carregamento da bateria seja o mesmo do inicio da simulacao
-        Carregamento48h, PunicaoCicloCarga = self.PunicaoCiclodeCarga(solucao, kwHRatedList)
+        Carregamento48h, PunicaoCicloCarga = self.PunicaoCiclodeCarga()
 
         # Inclinaçoes
         Inclinacao = 0
@@ -491,28 +491,30 @@ class DSS(object):  # Classe DSS
     def BarrasTensaoVioladas(self):
         BarrasVioladas = 0
 
-        for load in self.dss.loads_allnames():
-            dataMonitorCargas = {}
-            fname = "C:\\Users\\jonas\\PycharmProjects\\AG_GBA01F3\\ARB_GBA01F3_2019\\results_Main\\ARBGBA_Mon_" + load + "_1.csv"
+        for trafo in self.dss.transformers_allNames():
+            self.dss.transformers_write_name(trafo)
+            if self.dss.transformers_read_kv() != 13.8:
+                dataMonitorCargas = {}
+                fname = "C:\\Users\\jonas\\PycharmProjects\\AG_GBA01F3\\ARB_GBA01F3_2019\\results_Main\\ARBGBA_Mon_" + trafo + "_1.csv"
 
-            with open(str(fname), 'r', newline='') as file:
-                csv_reader_object = csv.reader(file)
-                name_col = next(csv_reader_object)
+                with open(str(fname), 'r', newline='') as file:
+                    csv_reader_object = csv.reader(file)
+                    name_col = next(csv_reader_object)
 
-                for row in name_col:
-                    dataMonitorCargas[row] = []
+                    for row in name_col:
+                        dataMonitorCargas[row] = []
 
-                for row in csv_reader_object:  ##Varendo todas as linhas
-                    for ndata in range(0, len(name_col)):  ## Varendo todas as colunas
-                        rowdata = row[ndata].replace(" ", "").replace('"',"")
-                        if name_col[ndata] == ' |V|1 (volts)' or name_col[ndata] == ' |V|2 (volts)' or name_col[ndata] == ' |V|3 (volts)':
-                            dataMonitorCargas[name_col[ndata]].append(float(rowdata)/127)
+                    for row in csv_reader_object:  ##Varendo todas as linhas
+                        for ndata in range(0, len(name_col)):  ## Varendo todas as colunas
+                            rowdata = row[ndata].replace(" ", "").replace('"',"")
+                            if name_col[ndata] == ' |V|1 (volts)' or name_col[ndata] == ' |V|2 (volts)' or name_col[ndata] == ' |V|3 (volts)':
+                                dataMonitorCargas[name_col[ndata]].append(float(rowdata)/127)
 
-            TensaoPUFasesBarras = dataMonitorCargas[' |V|1 (volts)'] + dataMonitorCargas[' |V|2 (volts)']
-            # print(TensaoPUFasesBarras)
-            for ctd in TensaoPUFasesBarras:
-                if ctd > 1.03 or ctd < 0.95:
-                    BarrasVioladas += 1
+                TensaoPUFasesBarras = dataMonitorCargas[' |V|1 (volts)'] + dataMonitorCargas[' |V|2 (volts)']
+                # print(TensaoPUFasesBarras)
+                for ctd in TensaoPUFasesBarras:
+                    if ctd > 1.03 or ctd < 0.95:
+                        BarrasVioladas += 1
 
         # TensaoPUFasesBarras = d.dssCircuit.AllNodeVmagPUByPhase(1) + d.dssCircuit.AllNodeVmagPUByPhase(2) + d.dssCircuit.AllNodeVmagPUByPhase(3)
         # for i in TensaoPUFasesBarras:
@@ -520,8 +522,7 @@ class DSS(object):  # Classe DSS
         #         BarrasVioladas += 1
         return BarrasVioladas
 
-    def PunicaoCiclodeCarga(self, solucao, kwHRatedList, kwhstored=30000):
-        # kWhstored = 0.6 * kwHRatedList[solucao[1]]
+    def PunicaoCiclodeCarga(self, kwhstored=30000):
 
         dataMonitorStorage = {}
 
@@ -539,9 +540,7 @@ class DSS(object):  # Classe DSS
                         dataMonitorStorage[name_col[ndata]].append(float(rowdata))
 
         Carregamento48h = dataMonitorStorage[' kWh'][-1]
-        PunicaoCicloCarga = pow(abs((kwhstored-Carregamento48h)/100),1)
-        # PunicaoCicloCarga = pow(abs((30000-Carregamento48h)/100),1)
-
+        PunicaoCicloCarga = abs((kwhstored-Carregamento48h)/100)
         return Carregamento48h, PunicaoCicloCarga
 
 if __name__ == '__main__':
@@ -556,6 +555,16 @@ if __name__ == '__main__':
             barras.append(d.dss.bus_name())
     print(barras)
 
+    # results_file = open("Monitores.txt", "a")
+    # Monitores = []
+    # for trafo in d.dss.transformers_allNames():
+    #     d.dss.transformers_write_name(trafo)
+    #     if d.dss.transformers_read_kv() != 13.8:
+    #         Monitores.append("New Monitor." + trafo + " Element=Transformer." + trafo + " mode=32 terminal=2\n")
+    #
+    # results_file.writelines(Monitores)
+    # results_file.close()
+
     kWRatedList = list(range(100, 5000, 200))
     kwHRatedList = list(range(1000, 35000, 500))
     dominio = [(0, len(kWRatedList) - 1), (0, len(barras) - 1), (0, 40) , (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40),  (0, 40), (0, 40)]
@@ -568,5 +577,6 @@ if __name__ == '__main__':
     porcentagem_prosumidores = 0.1
     for i in list(range(1,2,1)):
         d.genetico(porcentagem_prosumidores, kWRatedList, barras, dominio)
+
 
 

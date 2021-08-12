@@ -59,7 +59,7 @@ class DSS(object):  # Classe DSS
         print("Media carga", somaload/len(self.dss.loads_allnames()))
         print(somaPmpp)
 
-        # Seleção por Roleta dos Prosumidores
+        # Seleção por Roleta dos Prossumidores
         fim = round(len(loadlist) * porcentagem_prosumidores)
         # print('fim', fim)
         print(loadlist)
