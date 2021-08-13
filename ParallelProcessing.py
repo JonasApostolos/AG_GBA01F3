@@ -3,7 +3,6 @@ import py_dss_interface
 from pylab import *
 import random
 import os
-import csv
 import numpy
 import statistics
 
@@ -23,39 +22,22 @@ class DSS(object):  # Classe DSS
         LoadshapePointsList = [round(ctd, 2) for ctd in list(numpy.arange(-1.0, 1.05, 0.05))]
 
         for ctd in range(0, len(cpu1)):
-            print("solucao", ctd)
+            print(ctd)
             solucoesCPU = [cpu1[ctd], cpu2[ctd], cpu3[ctd]]
 
-            self.dss.dss_clearall()
             self.dss.text("ClearAll")
             self.dss.text("Set Parallel=No")
             self.dss.text("compile [{}]".format(self.dssFileName))
             self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
             self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
-            self.dss.text("Set Mode=Snap")
             self.dss.parallel_write_actorcpu(0)
-
-            # for trafo in self.dss.transformers_allNames():
-            #     self.dss.transformers_write_name(trafo)
-            #     if self.dss.transformers_read_kv() != 13.8:
-            #         self.dss.text("New Monitor." + trafo + " Element=Transformer." + trafo + " mode=32 terminal=2")
-            # self.dss.parallel_write_actorcpu(0)
-            self.dss.solution_solve()
-
             self.dss.text("clone 2")
+            self.dss.text("Set Parallel=Yes")
 
             ################## CPU 0
-            # # self.dss.parallel_createactor()
-            # self.dss.text("compile [{}]".format(self.dssFileName))
-            # self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
-
-            self.dss.text("Set Parallel=Yes")
             self.dss.parallel_write_activeactor(1)
-            # self.dss.parallel_write_actorcpu(0)
             self.results_path = self.OpenDSS_folder_path + "/results_Main"
             self.dss.text("set DataPath=" + self.results_path)
-            # self.dss.text("set mode=Daily stepsize=15m number=97")
-            # self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
 
             Loadshape1 = [LoadshapePointsList[ctd] for ctd in solucoesCPU[0][2:]]
             Loadshape1 = self.LoadshapeToMediaMovel(Loadshape1)
@@ -69,19 +51,12 @@ class DSS(object):  # Classe DSS
             self.dss.text("Storage.storage.kWhstored=" + str(kwhstored))
             self.dss.text("Storage.storage.enabled=yes")
             self.dss.solution_buildymatrix()
-            # self.dss.text("Solve")
 
             ################## CPU 2
-            # self.dss.parallel_createactor()
-            # self.dss.text("compile [{}]".format(self.dssFileName))
-            # self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
-
             self.dss.parallel_write_activeactor(2)
             self.dss.parallel_write_actorcpu(2)
             self.results_path = self.OpenDSS_folder_path + "/results_Main"
             self.dss.text("set DataPath=" + self.results_path)
-            # self.dss.text("set mode=Daily stepsize=15m number=97")
-            # self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
 
             Loadshape2 = [LoadshapePointsList[ctd] for ctd in solucoesCPU[1][2:]]
             Loadshape2 = self.LoadshapeToMediaMovel(Loadshape2)
@@ -95,19 +70,12 @@ class DSS(object):  # Classe DSS
             self.dss.text("Storage.storage.kWhstored=" + str(kwhstored))
             self.dss.text("Storage.storage.enabled=yes")
             self.dss.solution_buildymatrix()
-            # self.dss.text("Solve")
 
             ################## CPU 3
-            # self.dss.parallel_createactor()
-            # self.dss.text("compile [{}]".format(self.dssFileName))
-            # self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
-
             self.dss.parallel_write_activeactor(3)
             self.dss.parallel_write_actorcpu(3)
             self.results_path = self.OpenDSS_folder_path + "/results_Main"
             self.dss.text("set DataPath=" + self.results_path)
-            self.dss.text("set mode=Daily stepsize=15m number=97")
-            # self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
 
             Loadshape3 = [LoadshapePointsList[ctd] for ctd in solucoesCPU[2][2:]]
             Loadshape3 = self.LoadshapeToMediaMovel(Loadshape3)
@@ -121,21 +89,13 @@ class DSS(object):  # Classe DSS
             self.dss.text("Storage.storage.kWhstored=" + str(kwhstored))
             self.dss.text("Storage.storage.enabled=yes")
             self.dss.solution_buildymatrix()
-            # self.dss.text("Solve")
 
-            self.dss.parallel_write_activeactor(2)
+            #######
+            self.dss.text("set ActiveActor=*")
             self.dss.text("set mode=Daily stepsize=15m number=97")
-            self.dss.parallel_write_activeactor(3)
-            self.dss.text("set mode=Daily stepsize=15m number=97")
-            self.dss.parallel_write_activeactor(1)
-            self.dss.text("set mode=Daily stepsize=15m number=97")
-
-            # self.dss.parallel_write_activeactor(1)
+            self.dss.text("set ActiveActor=1")
             self.dss.parallel_write_activeparallel(1)
             self.dss.solution_solveall()
-            # for actor in range(1, self.dss.parallel_numactors()+1):
-            #     self.dss.parallel_write_activeactor(actor)
-            #     self.dss.solution_solve()
 
             boolstatus = 0
             while boolstatus == 0:
@@ -143,14 +103,12 @@ class DSS(object):  # Classe DSS
                     boolstatus = 1
 
             loadshapes = [Loadshape1, Loadshape2, Loadshape3]
-
-            # print(self.dss.parallel_numactors())
             for i in range(1, self.dss.parallel_numactors() + 1):
                 self.dss.parallel_write_activeactor(i)
-                print('actor2', self.dss.parallel_read_activeactor())
-                self.dss.text("export meters")
-                for monitor in self.dss.monitors_allnames():
-                    self.dss.text("export monitor " + monitor)
+                # print('actor2', self.dss.parallel_read_activeactor())
+                # self.dss.text("export meters")
+                # for monitor in self.dss.monitors_allnames():
+                #     self.dss.text("export monitor " + monitor)
 
                 # Punicao para maximar a amplitude da loadshape
                 maximo = max([abs(min(loadshapes[i-1])), max(loadshapes[i-1])])
@@ -172,7 +130,7 @@ class DSS(object):  # Classe DSS
                         Inclinacao += numpy.abs(inclinacao)
 
                 # Punição Niveis de Tensão
-                if self.BarrasTensaoVioladas(i) > self.BarrasTensaoVioladasOriginal:
+                if self.BarrasTensaoVioladas() > self.BarrasTensaoVioladasOriginal:
                     PunicaoTensao = 999
                 else:
                     PunicaoTensao = 0
@@ -181,64 +139,30 @@ class DSS(object):  # Classe DSS
                 # É preciso garantir que ao final das 48h o nível de carregamento da bateria seja o mesmo do inicio da simulacao
                 Carregamento48h, PunicaoCicloCarga = self.PunicaoCiclodeCarga()
 
-                # PERDAS
-                ### Acessando arquivo CSV Potência
-                dataEnergymeterCSV = {}
-                self.dataperda = {}
-
-                fname = "C:\\Users\\jonas\\PycharmProjects\\AG_GBA01F3\\ARB_GBA01F3_2019\\results_Main\\ARBGBA_EXP_METERS.csv"
-
-                with open(str(fname), 'r', newline='') as file:
-                    csv_reader_object = csv.reader(file)
-                    name_col = next(csv_reader_object)
-
-                    for row in name_col:
-                        dataEnergymeterCSV[row] = []
-
-                    for row in csv_reader_object:  ##Varendo todas as linhas
-                        for ndata in range(0, len(name_col)):  ## Varendo todas as colunas
-                            rowdata = row[ndata].replace(" ", "").replace('"', "")
-                            if rowdata == "FEEDER" or rowdata == "":
-                                dataEnergymeterCSV[name_col[ndata]].append(rowdata)
-                            else:
-                                dataEnergymeterCSV[name_col[ndata]].append(float(rowdata))
-                self.dataperda['Perdas %'] = (dataEnergymeterCSV[' "Zone Losses kWh"'][0] /
-                                              dataEnergymeterCSV[' "Zone kWh"'][0]) * 100
-                os.remove(fname)
+                ### PERDAS
+                self.dss.meters_write_name("Feeder")
+                ZonekWh = self.dss.meters_registervalues()[4]
+                ZoneLosseskWh = self.dss.meters_registervalues()[12]
+                Losses = ZoneLosseskWh / ZonekWh * 100
+                # print(self.dataperda['Perdas %'], Losses)
 
                 # DESVIO PADRÃO DO CARREGAMENTO DO TRAFO
-                ### Acessando arquivo CSV Potência
-                dataFeederMmonitorCSV = {}
-
-                fname = "C:\\Users\\jonas\\PycharmProjects\\AG_GBA01F3\\ARB_GBA01F3_2019\\results_Main\\ARBGBA_Mon_potencia_feeder_" + str(i) + ".csv"
-
-                with open(str(fname), 'r', newline='') as file:
-                    csv_reader_object = csv.reader(file)
-                    name_col = next(csv_reader_object)
-
-                    for row in name_col:
-                        dataFeederMmonitorCSV[row] = []
-
-                    dataFeederMmonitorCSV['PTotal'] = []
-
-                    for row in csv_reader_object:  ##Varendo todas as linhas
-                        Pt = 0
-                        for ndata in range(0, len(name_col)):  ## Varendo todas as colunas
-                            rowdata = row[ndata].replace(" ", "").replace('"', "")
-                            dataFeederMmonitorCSV[name_col[ndata]].append(float(rowdata))
-                            if name_col[ndata] == ' P1 (kW)' or name_col[ndata] == ' P2 (kW)' or name_col[
-                                ndata] == ' P3 (kW)':
-                                Pt += float(rowdata)
-
-                        dataFeederMmonitorCSV['PTotal'].append(Pt)
-                Desvio = statistics.pstdev(dataFeederMmonitorCSV['PTotal'])
+                self.dss.monitors_write_name("potencia_feeder")
+                DemandaTotal = []
+                Pt1 = self.dss.monitors_channel(1)
+                Pt2 = self.dss.monitors_channel(3)
+                Pt3 = self.dss.monitors_channel(5)
+                for iteracao in range(0, len(self.dss.monitors_channel(1))):
+                    Pt = Pt1[iteracao] + Pt2[iteracao] + Pt3[iteracao]
+                    DemandaTotal.append(Pt)
+                Desvio = statistics.pstdev(DemandaTotal)
 
                 Custo = self.dataperda['Perdas %'] + Desvio + Inclinacao + PunicaoCicloCarga + PunicaoMaxLoadshape + PunicaoTensao
                 custos.append((Custo, solucoesCPU[i-1]))
-        end_funcaocusto = time.time()
-        print('Tempo da geração: ', end_funcaocusto-start_funcaocusto, custos )
-        return custos
 
+        end_funcaocusto = time.time()
+        print('Tempo da geração: ', end_funcaocusto-start_funcaocusto, custos)
+        return custos
 
     def genetico(self,pv_percentage, kWRatedList, barras, dominio, tamanho_populacao=81,  passo=1,
                  probabilidade_mutacao=0.2, elitismo=0.2):
@@ -275,6 +199,8 @@ class DSS(object):  # Classe DSS
 
         while stop == False:
             custos = self.funcaoCusto(populacao, kWRatedList, barras, pv_percentage)
+            print(len(custos))
+            stop = True
 
     def CalculaCustosOriginal(self, porcentagem_prosumidores):
         self.dss.dss_clearall()
@@ -293,63 +219,28 @@ class DSS(object):  # Classe DSS
 
         self.dss.parallel_write_activeparallel(0)
         self.dss.text("Solve")
-        # self.dss.text("Plot monitor object= potencia_feeder channels=(1 3 5 )")
 
-        self.dss.text("export meters")
-        for monitor in self.dss.monitors_allnames():
-            self.dss.text("export monitor " + monitor)
+        ### PERDAS
+        self.dss.meters_write_name("Feeder")
+        ZonekWh = self.dss.meters_registervalues()[4]
+        ZoneLosseskWh = self.dss.meters_registervalues()[12]
+        Losses = ZoneLosseskWh/ZonekWh*100
+        # print(self.dataperda['Perdas %'], Losses)
 
-        ### Acessando arquivo CSV Potência
-        dataEnergymeterCSV = {}
-        self.dataperda = {}
-
-        fname = "C:\\Users\\jonas\\PycharmProjects\\AG_GBA01F3\\ARB_GBA01F3_2019\\results_Main\\ARBGBA_EXP_METERS.csv"
-
-        with open(str(fname), 'r', newline='') as file:
-            csv_reader_object = csv.reader(file)
-            name_col = next(csv_reader_object)
-
-            for row in name_col:
-                dataEnergymeterCSV[row] = []
-
-            for row in csv_reader_object:  ##Varendo todas as linhas
-                for ndata in range(0, len(name_col)):  ## Varendo todas as colunas
-                    rowdata = row[ndata].replace(" ", "").replace('"',"")
-                    if rowdata == "FEEDER" or rowdata == "":
-                        dataEnergymeterCSV[name_col[ndata]].append(rowdata)
-                    else:
-                        dataEnergymeterCSV[name_col[ndata]].append(float(rowdata))
-
-        self.dataperda['Perdas %'] = (dataEnergymeterCSV[' "Zone Losses kWh"'][0]/dataEnergymeterCSV[' "Zone kWh"'][0])*100
-        os.remove(fname)
-
-        ### Acessando arquivo CSV Potência
-        dataFeederMmonitorCSV = {}
-
-        fname = "C:\\Users\\jonas\\PycharmProjects\\AG_GBA01F3\\ARB_GBA01F3_2019\\results_Main\\ARBGBA_Mon_potencia_feeder_1.csv"
-
-        with open(str(fname), 'r', newline='') as file:
-            csv_reader_object = csv.reader(file)
-            name_col = next(csv_reader_object)
-
-            for row in name_col:
-                dataFeederMmonitorCSV[row] = []
-
-            dataFeederMmonitorCSV['PTotal'] = []
-
-            for row in csv_reader_object:  ##Varendo todas as linhas
-                Pt = 0
-                for ndata in range(0, len(name_col)):  ## Varendo todas as colunas
-                    rowdata = row[ndata].replace(" ", "").replace('"', "")
-                    dataFeederMmonitorCSV[name_col[ndata]].append(float(rowdata))
-                    if name_col[ndata] == ' P1 (kW)' or name_col[ndata] == ' P2 (kW)' or name_col[ndata] == ' P3 (kW)':
-                        Pt += float(rowdata)
-
-                dataFeederMmonitorCSV['PTotal'].append(Pt)
+        ### DEMANDA DO TRAFO AT MT
+        self.dss.monitors_write_name("potencia_feeder")
+        DemandaTotal = []
+        Pt1 = self.dss.monitors_channel(1)
+        Pt2 = self.dss.monitors_channel(3)
+        Pt3 = self.dss.monitors_channel(5)
+        for iteracao in range(0, len(self.dss.monitors_channel(1))):
+            Pt = Pt1[iteracao] + Pt2[iteracao] + Pt3[iteracao]
+            DemandaTotal.append(Pt)
 
         barrasVioladas = self.BarrasTensaoVioladas()
+
         print('Custos Sistema Original (Somente GD-PV)')
-        print('Perdas:', self.dataperda['Perdas %'], 'Violações de Tensao:', barrasVioladas, 'PTotal:', dataFeederMmonitorCSV['PTotal'], '\n')
+        print('Perdas:', self.dataperda['Perdas %'], 'Violações de Tensao:', barrasVioladas, 'PTotal:', DemandaTotal, '\n')
         return barrasVioladas
 
     def BarrasTensaoVioladas(self, actor=1):
@@ -358,32 +249,17 @@ class DSS(object):  # Classe DSS
         for trafo in self.dss.transformers_allNames():
             self.dss.transformers_write_name(trafo)
             if self.dss.transformers_read_kv() != 13.8:
-                dataMonitorCargas = {}
-                fname = "C:\\Users\\jonas\\PycharmProjects\\AG_GBA01F3\\ARB_GBA01F3_2019\\results_Main\\ARBGBA_Mon_" + trafo + "_" + str(actor) + ".csv"
-
-                with open(str(fname), 'r', newline='') as file:
-                    csv_reader_object = csv.reader(file)
-                    name_col = next(csv_reader_object)
-
-                    for row in name_col:
-                        dataMonitorCargas[row] = []
-
-                    for row in csv_reader_object:  ##Varendo todas as linhas
-                        for ndata in range(0, len(name_col)):  ## Varendo todas as colunas
-                            rowdata = row[ndata].replace(" ", "").replace('"',"")
-                            if name_col[ndata] == ' |V|1 (volts)' or name_col[ndata] == ' |V|2 (volts)' or name_col[ndata] == ' |V|3 (volts)':
-                                dataMonitorCargas[name_col[ndata]].append(float(rowdata)/127)
-
-                TensaoPUFasesBarras = dataMonitorCargas[' |V|1 (volts)'] + dataMonitorCargas[' |V|2 (volts)']
-                # print(TensaoPUFasesBarras)
-                for ctd in TensaoPUFasesBarras:
+                self.dss.monitors_write_name(str(trafo))
+                V1 = self.dss.monitors_channel(1)
+                V2 = self.dss.monitors_channel(2)
+                V3 = self.dss.monitors_channel(3)
+                Vtotal = [x/127 for x in list(V1 + V2 + V3)]
+                # Vtotal.sort()
+                # print(Vtotal)
+                for ctd in Vtotal:
                     if ctd > 1.03 or ctd < 0.95:
                         BarrasVioladas += 1
 
-        # TensaoPUFasesBarras = d.dssCircuit.AllNodeVmagPUByPhase(1) + d.dssCircuit.AllNodeVmagPUByPhase(2) + d.dssCircuit.AllNodeVmagPUByPhase(3)
-        # for i in TensaoPUFasesBarras:
-        #     if i > 1.03 or i < 0.97:
-        #         BarrasVioladas += 1
         return BarrasVioladas
 
     def LoadshapeToMediaMovel(self, loadshape):
@@ -412,23 +288,9 @@ class DSS(object):  # Classe DSS
             Inclinacoes.append(numpy.arctan(x)*180/pi)
         return Inclinacoes
 
-    def PunicaoCiclodeCarga(self, kwhstored=30000, actor=1):
-        dataMonitorStorage = {}
-
-        fname = "C:\\Users\\jonas\\PycharmProjects\\AG_GBA01F3\\ARB_GBA01F3_2019\\results_Main\\ARBGBA_Mon_storage_" + str(actor) + ".csv"
-
-        with open(str(fname), 'r', newline='') as file:
-            csv_reader_object = csv.reader(file)
-            name_col = next(csv_reader_object)
-            for row in name_col:
-                dataMonitorStorage[row] = []
-            for row in csv_reader_object:  ##Varendo todas as linhas
-                for ndata in range(0, len(name_col)-3):  ## Varendo todas as colunas
-                    if row != ['ÿÿÿÿ']:
-                        rowdata = row[ndata].replace(" ", "").replace('"',"")
-                        dataMonitorStorage[name_col[ndata]].append(float(rowdata))
-
-        Carregamento48h = dataMonitorStorage[' kWh'][-1]
+    def PunicaoCiclodeCarga(self, kwhstored=30000):
+        self.dss.monitors_write_name("storage")
+        Carregamento48h = self.dss.monitors_channel(1)[-1]
         PunicaoCicloCarga = abs((kwhstored-Carregamento48h)/100)
 
         return Carregamento48h, PunicaoCicloCarga

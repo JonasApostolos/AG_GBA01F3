@@ -31,7 +31,7 @@ New Storage.storage phases=3 model=1 Conn=Wye Bus1=90910m784 kW=900 kV=13.800 kW
 ////////////// Monitores
 New EnergyMeter.Feeder Transformer.1012334 terminal=1
 New Monitor.Potencia_Feeder Line.110705 mode=1 terminal=1 ppolar=no
-!Redirect Monitores.dss
+Redirect Monitores.dss
 New Monitor.Storage Storage.Storage mode=3
 
 set voltagebases = [230, 132.79, 138, 79.67, 69, 39.8371, 13.8, 11.9, 7.96, 6.87 ,0.44, 0.254, 0.38, 0.219, 0.22, 0.127, 0.0733]
