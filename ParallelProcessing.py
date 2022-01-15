@@ -18,30 +18,37 @@ class DSS(object):  # Classe DSS
         cpu1 = populacao[0:len(populacao)//3]
         cpu2 = populacao[len(populacao)//3:2*len(populacao)//3]
         cpu3 = populacao[2*len(populacao)//3:len(populacao)]
+        # print("cpu1", cpu1)
 
         LoadshapePointsList = [round(ctd, 2) for ctd in list(numpy.arange(-1.0, 1.05, 0.05))]
 
         for ctd in range(0, len(cpu1)):
-            print(ctd)
+            # print("Solucao", ctd)
+
+
             solucoesCPU = [cpu1[ctd], cpu2[ctd], cpu3[ctd]]
 
             self.dss.text("ClearAll")
-            self.dss.text("Set Parallel=No")
-            self.dss.text("compile [{}]".format(self.dssFileName))
-            self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
-            self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
-            self.dss.parallel_write_actorcpu(0)
-            self.dss.text("clone 2")
+            # self.dss.text("Set Parallel=No")
+            # self.dss.text("compile [{}]".format(self.dssFileName))
+            # self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
+            # self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
+            # self.dss.parallel_write_actorcpu(0)
+            # self.dss.text("clone 2")
             self.dss.text("Set Parallel=Yes")
 
             ################## CPU 0
-            self.dss.parallel_write_activeactor(1)
-            self.results_path = self.OpenDSS_folder_path + "/results_Main"
+            self.dss.text("set ActiveActor=1")
+            self.dss.parallel_write_actorcpu(0)
+
+            self.dss.text("compile [{}]".format(self.dssFileName))
+            self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
             self.dss.text("set DataPath=" + self.results_path)
+            self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
 
             Loadshape1 = [LoadshapePointsList[ctd] for ctd in solucoesCPU[0][2:]]
             Loadshape1 = self.LoadshapeToMediaMovel(Loadshape1)
-            print("active actor", self.dss.parallel_read_activeactor(), kWRatedList[solucoesCPU[0][0]], barras[solucoesCPU[0][1]], Loadshape1)
+            # print("active actor", self.dss.parallel_read_activeactor(), kWRatedList[solucoesCPU[0][0]], barras[solucoesCPU[0][1]], Loadshape1)
             self.dss.text("Loadshape.Loadshape1.mult=" + str(Loadshape1))
             self.dss.text("Storage.storage.Bus1=" + str(barras[solucoesCPU[0][1]]))
             self.dss.text("Storage.storage.kWrated=" + str(kWRatedList[solucoesCPU[0][0]]))
@@ -53,14 +60,18 @@ class DSS(object):  # Classe DSS
             self.dss.solution_buildymatrix()
 
             ################## CPU 2
-            self.dss.parallel_write_activeactor(2)
+            self.dss.parallel_createactor()
+            self.dss.text("set ActiveActor=2")
             self.dss.parallel_write_actorcpu(2)
-            self.results_path = self.OpenDSS_folder_path + "/results_Main"
+
+            self.dss.text("compile [{}]".format(self.dssFileName))
+            self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
             self.dss.text("set DataPath=" + self.results_path)
+            self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
 
             Loadshape2 = [LoadshapePointsList[ctd] for ctd in solucoesCPU[1][2:]]
             Loadshape2 = self.LoadshapeToMediaMovel(Loadshape2)
-            print("active actor", self.dss.parallel_read_activeactor(), kWRatedList[solucoesCPU[1][0]], barras[solucoesCPU[1][1]], Loadshape2)
+            # print("active actor", self.dss.parallel_read_activeactor(), kWRatedList[solucoesCPU[1][0]], barras[solucoesCPU[1][1]], Loadshape2)
             self.dss.text("Loadshape.Loadshape1.mult=" + str(Loadshape2))
             self.dss.text("Storage.storage.Bus1=" + str(barras[solucoesCPU[1][1]]))
             self.dss.text("Storage.storage.kWrated=" + str(kWRatedList[solucoesCPU[1][0]]))
@@ -72,14 +83,18 @@ class DSS(object):  # Classe DSS
             self.dss.solution_buildymatrix()
 
             ################## CPU 3
-            self.dss.parallel_write_activeactor(3)
+            self.dss.parallel_createactor()
+            self.dss.text("set ActiveActor=3")
             self.dss.parallel_write_actorcpu(3)
-            self.results_path = self.OpenDSS_folder_path + "/results_Main"
+
+            self.dss.text("compile [{}]".format(self.dssFileName))
+            self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
             self.dss.text("set DataPath=" + self.results_path)
+            self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
 
             Loadshape3 = [LoadshapePointsList[ctd] for ctd in solucoesCPU[2][2:]]
             Loadshape3 = self.LoadshapeToMediaMovel(Loadshape3)
-            print("active actor", self.dss.parallel_read_activeactor(), kWRatedList[solucoesCPU[2][0]], barras[solucoesCPU[2][1]], Loadshape3)
+            # print("active actor", self.dss.parallel_read_activeactor(), kWRatedList[solucoesCPU[2][0]], barras[solucoesCPU[2][1]], Loadshape3)
             self.dss.text("Loadshape.Loadshape1.mult=" + str(Loadshape3))
             self.dss.text("Storage.storage.Bus1=" + str(barras[solucoesCPU[2][1]]))
             self.dss.text("Storage.storage.kWrated=" + str(kWRatedList[solucoesCPU[2][0]]))
@@ -94,7 +109,7 @@ class DSS(object):  # Classe DSS
             self.dss.text("set ActiveActor=*")
             self.dss.text("set mode=Daily stepsize=15m number=97")
             self.dss.text("set ActiveActor=1")
-            self.dss.parallel_write_activeparallel(1)
+            self.dss.text("Set Parallel=Yes")
             self.dss.solution_solveall()
 
             boolstatus = 0
@@ -104,7 +119,7 @@ class DSS(object):  # Classe DSS
 
             loadshapes = [Loadshape1, Loadshape2, Loadshape3]
             for i in range(1, self.dss.parallel_numactors() + 1):
-                self.dss.parallel_write_activeactor(i)
+                self.dss.text("set ActiveActor="+str(i))
                 # print('actor2', self.dss.parallel_read_activeactor())
                 # self.dss.text("export meters")
                 # for monitor in self.dss.monitors_allnames():
@@ -120,6 +135,8 @@ class DSS(object):  # Classe DSS
                     PunicaoMaxLoadshape = 10
                 elif maximo < 0.8:
                     PunicaoMaxLoadshape = 30
+                else:
+                    PunicaoMaxLoadshape = 0
 
                 # Inclinaçoes
                 Inclinacao = 0
@@ -157,10 +174,16 @@ class DSS(object):  # Classe DSS
                     DemandaTotal.append(Pt)
                 Desvio = statistics.pstdev(DemandaTotal)
 
-                Custo = self.dataperda['Perdas %'] + Desvio + Inclinacao + PunicaoCicloCarga + PunicaoMaxLoadshape + PunicaoTensao
+                # print(self.dss.parallel_read_activeactor())
+                Custo = round(Losses + Desvio + Inclinacao + PunicaoCicloCarga + PunicaoMaxLoadshape + PunicaoTensao, 5)
                 custos.append((Custo, solucoesCPU[i-1]))
 
+                # custos.append((Custo, solucoesCPU[i-1], self.dss.parallel_read_activeactor(), Desvio, Losses))
+                # if:
+                #     print("cpu", Custo, solucoesCPU[0]), barras[solucoesCPU[0][1]], kWRatedList[solucoesCPU[0][0]], Loadshape1)
+
         end_funcaocusto = time.time()
+        # custos.sort()
         print('Tempo da geração: ', end_funcaocusto-start_funcaocusto, custos)
         return custos
 
@@ -192,24 +215,183 @@ class DSS(object):  # Classe DSS
                     MaxLoadshapeFlag = 1
             populacao.append(solucao)
 
+        # for cu in range(1, 82):
+        #     populacao.append([2, 263, 8, 14, 3, 0, 0, 11, 12, 17, 4, 3, 11, 16, 26, 20, 30, 29, 22, 33, 32, 23, 37, 35, 24, 26, 15])
+        #
         numero_elitismo = int(elitismo * tamanho_populacao)
         geracao = 1
         stop = False
         melhor_solucao = [] # Lista de menor custo por geracao
 
         while stop == False:
+            # print("pop0", populacao)
             custos = self.funcaoCusto(populacao, kWRatedList, barras, pv_percentage)
-            print(len(custos))
-            stop = True
+            custos.sort()
+            melhor_solucao.append(custos[0][0])
+            if len(melhor_solucao) > int(0.2 * tamanho_populacao): # Criterio de parada
+                if abs(melhor_solucao[-16] - melhor_solucao[-1]) < 1:
+                    stop=True
+            # if melhor_solucao.count(custos[0][0]) == int(0.2 * tamanho_populacao):  # Criterio de parada
+            #     stop = True
+            custos_traduzidos = [(ctd[0], kWRatedList[ctd[1][0]], barras[ctd[1][1]]) for ctd in custos]
+            print("Geração::", geracao,  custos_traduzidos)
+            print("Melhores Resultados", melhor_solucao)
+            geracao += 1
+            individuos_ordenados = [individuo for (custo, individuo) in custos]
+            populacao = individuos_ordenados[0:numero_elitismo]
+            lista_rank = [(individuo, (tamanho_populacao - individuos_ordenados.index(individuo))/(tamanho_populacao*(tamanho_populacao-1))) for individuo in individuos_ordenados]
+            lista_rank.reverse()
+            soma=0
+            for ctd in lista_rank:
+                soma += ctd[1]
 
-    def CalculaCustosOriginal(self, porcentagem_prosumidores):
-        self.dss.dss_clearall()
+            # print("pop", populacao)
+            # Cruzamento e Mutacao dos individuos
+            while len(populacao) < tamanho_populacao:
+                if random.random() < probabilidade_mutacao:
+                    m = random.randint(0, numero_elitismo)
+                    populacao.append(self.mutacao(dominio, passo, individuos_ordenados[m]))
+                else:
+                    aleatorio = random.uniform(0, soma)
+                    # print('aleatorio', aleatorio)
+                    s = 0
+                    for j in lista_rank:
+                        s += j[1]
+                        if aleatorio < s:
+                            c1 = j[0]
+                            # print('c1', c1)
+                            break
+                    aleatorio = random.uniform(0, soma)
+                    s = 0
+                    for j in lista_rank:
+                        s += j[1]
+                        if aleatorio < s:
+                            c2 = j[0]
+                            # print('c2', c2)
+                            break
+                    populacao.append(self.cruzamento(dominio, c1, c2))
+
+        Loadshape, Perda, Carregamento, Inclinacao, Tensao, Desvio, kWhRated, Demanda, kWhstored = self.CalculaCustos(custos[0][1], kWRatedList, barras, pv_percentage)
+
+        end2 = time.time()
+
+        results_file = open("Resultados.txt", "a")
+        results_file.write(f"{geracao}, {(end2 - start2)/3600}, {custos_traduzidos[0][0]}, {custos_traduzidos[0][1]}, {custos_traduzidos[0][2]}, 50000, {Loadshape}, {Perda}, {Carregamento}, {Inclinacao}, {Tensao}, {Desvio}, {kWhRated}, {kWhstored} \n{Demanda} \n{melhor_solucao} \n")
+        results_file.close()
+
+        print("tempo total:", end2 - start2)
+        return custos[0][1]
+
+    def mutacao(self, dominio, passo, solucao):
+        i = random.randint(0, len(dominio) - 1)
+        mutante = solucao
+
+        if random.random() < 0.5:
+            if solucao[i] != dominio[i][0] and solucao[i] >= (dominio[i][0] + passo):
+                mutante = solucao[0:i] + [solucao[i] - passo] + solucao[i + 1:]
+        else:
+            if solucao[i] != dominio[i][1] and solucao[i] <= (dominio[i][1] - passo):
+                mutante = solucao[0:i] + [solucao[i] + passo] + solucao[i + 1:]
+
+        return mutante
+
+    def cruzamento(self, dominio, individuo1, individuo2):
+        i = random.randint(1, len(dominio) - 2)
+        return individuo1[0:i] + individuo2[i:]
+
+    def CalculaCustos(self, solucao, kWRatedList, barras, pv_percentage):
         self.dss.text("ClearAll")
         self.dss.text("compile [{}]".format(self.dssFileName))
-
-        # OpenDSS folder
         self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
+        self.results_path = self.OpenDSS_folder_path + "/results_Main"
+        self.dss.text("set DataPath=" + self.results_path)
 
+        LoadshapePointsList = [round(ctd, 2) for ctd in list(numpy.arange(-1.0, 1.05, 0.05))]
+        Loadshape = [LoadshapePointsList[ctd] for ctd in solucao[2:]]
+        Loadshape = self.LoadshapeToMediaMovel(Loadshape)
+
+        self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
+        self.dss.text("Loadshape.Loadshape1.mult=" + str(Loadshape))
+        self.dss.text("Storage.storage.Bus1=" + str(barras[solucao[1]]))
+        self.dss.text("Storage.storage.kWrated=" + str(kWRatedList[solucao[0]]))
+        self.dss.text("Storage.storage.kva=" + str(kWRatedList[solucao[0]]))
+        self.dss.text("Storage.storage.kw=" + str(kWRatedList[solucao[0]]))
+        self.dss.text("Storage.storage.kWhrated=50000")
+        self.dss.text("Storage.storage.kWhstored=30000")
+        self.dss.text("Storage.storage.enabled=yes")
+
+        self.dss.text("set mode=Daily stepsize=15m number=97")
+        self.dss.parallel_write_activeparallel(0)
+        self.dss.text("Solve")
+
+        ### DEFININDO CAPACIDADE DE ARMAZENAMENTO
+        self.dss.monitors_write_name("storage")
+        kWh = self.dss.monitors_channel(1)
+        maxkWh = max(kWh)
+        minkWh = min(kWh)
+        kWhRated = (maxkWh-minkWh)/0.7
+        kwhstored = 30000-minkWh+0.25*kWhRated
+
+        ### SIMULACAO COM A NOVA CAP ARM
+        self.dss.text("ClearAll")
+        self.dss.text("compile [{}]".format(self.dssFileName))
+        self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
+        self.results_path = self.OpenDSS_folder_path + "/results_Main"
+        self.dss.text("set DataPath=" + self.results_path)
+
+        self.dss.text("Redirect PVSystems_" + str(pv_percentage) + ".dss")
+        self.dss.text("Loadshape.Loadshape1.mult=" + str(Loadshape))
+        self.dss.text("Storage.storage.Bus1=" + str(barras[solucao[0]]))
+        self.dss.text("Storage.storage.kWrated=" + str(kWRatedList[solucao[0]]))
+        self.dss.text("Storage.storage.kva=" + str(kWRatedList[solucao[0]]))
+        self.dss.text("Storage.storage.kw=" + str(kWRatedList[solucao[0]]))
+        self.dss.text("Storage.storage.kWhrated=" + str(kWhRated))
+        self.dss.text("Storage.storage.kWhstored=" + str(kwhstored))
+        self.dss.text("Storage.storage.enabled=yes")
+
+        self.dss.text("set mode=Daily stepsize=15m number=97")
+        self.dss.parallel_write_activeparallel(0)
+        self.dss.text("Solve")
+
+        # CICLO DE CARGA DA BATERIA
+        # É preciso garantir que ao final das 48h o nível de carregamento da bateria seja o mesmo do inicio da simulacao
+        Carregamento48h, PunicaoCicloCarga = self.PunicaoCiclodeCarga()
+
+        # Inclinaçoes
+        Inclinacao = 0
+        ListaInclinacoes = self.InclinacoesLoadshape(solucao)
+
+        for i in ListaInclinacoes:
+            if numpy.abs(i) > 40:
+                Inclinacao += numpy.abs(i)
+
+        ### PERDAS
+        self.dss.meters_write_name("Feeder")
+        ZonekWh = self.dss.meters_registervalues()[4]
+        ZoneLosseskWh = self.dss.meters_registervalues()[12]
+        Losses = ZoneLosseskWh / ZonekWh * 100
+
+        # DESVIO PADRÃO DO CARREGAMENTO DO TRAFO
+        self.dss.monitors_write_name("potencia_feeder")
+        DemandaTotal = []
+        Pt1 = self.dss.monitors_channel(1)
+        Pt2 = self.dss.monitors_channel(3)
+        Pt3 = self.dss.monitors_channel(5)
+        for iteracao in range(0, len(self.dss.monitors_channel(1))):
+            Pt = Pt1[iteracao] + Pt2[iteracao] + Pt3[iteracao]
+            DemandaTotal.append(Pt)
+        Desvio = statistics.pstdev(DemandaTotal)
+
+        # print('Perdas:', self.dataperda['Perdas %'], 'kWh 48h:', Carregamento48h, 'Inclinação:', Inclinacao, 'Barras_Violada:', self.BarrasTensaoVioladas(), 'Desvio:', Desvio, 'PTotal:', dataFeederMmonitorCSV['PTotal'])
+        # print(self.LoadshapeToMediaMovel(Loadshape),",", self.dataperda['Perdas %'],",", Carregamento48h,",", Inclinacao,",", self.BarrasTensaoVioladas(),",", Desvio, ",", kWhRated)
+        # print(dataFeederMmonitorCSV['PTotal'])
+        # print('Loadshape:', self.LoadshapeToMediaMovel(Loadshape))
+        return str(Loadshape).replace("[", "").replace("]", ""), Losses, Carregamento48h, Inclinacao, self.BarrasTensaoVioladas(), Desvio, kWhRated, DemandaTotal, kwhstored
+
+    def CalculaCustosOriginal(self, porcentagem_prosumidores):
+        self.dss.text("ClearAll")
+        self.dss.text("compile [{}]".format(self.dssFileName))
+        self.OpenDSS_folder_path = os.path.dirname(self.dssFileName)
         self.results_path = self.OpenDSS_folder_path + "/results_Main"
         self.dss.text("set DataPath=" + self.results_path)
 
@@ -240,7 +422,7 @@ class DSS(object):  # Classe DSS
         barrasVioladas = self.BarrasTensaoVioladas()
 
         print('Custos Sistema Original (Somente GD-PV)')
-        print('Perdas:', self.dataperda['Perdas %'], 'Violações de Tensao:', barrasVioladas, 'PTotal:', DemandaTotal, '\n')
+        print('Perdas:', Losses, 'Violações de Tensao:', barrasVioladas, 'PTotal:', DemandaTotal, '\n')
         return barrasVioladas
 
     def BarrasTensaoVioladas(self, actor=1):
@@ -259,7 +441,6 @@ class DSS(object):  # Classe DSS
                 for ctd in Vtotal:
                     if ctd > 1.03 or ctd < 0.95:
                         BarrasVioladas += 1
-
         return BarrasVioladas
 
     def LoadshapeToMediaMovel(self, loadshape):
@@ -307,7 +488,7 @@ if __name__ == '__main__':
         d.dss.circuit_setactivebus(bus)
         if len(d.dss.bus_nodes()) == 3 and ('gba' not in bus) and ('m784' in bus):
             barras.append(d.dss.bus_name())
-    print(len(barras))
+    # print(len(barras))
 
     pv_percentage = 0.2
     kWRatedList = list(range(100, 5000, 200))

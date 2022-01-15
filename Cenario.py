@@ -39,8 +39,7 @@ class DSS(object):  # Classe DSS
             self.dss.loads_write_name(load)
             kvbase = self.dss.loads_read_kv()
             numphases = self.dss.cktelement_numphases()
-            bus = str(self.dss.cktelement_read_busnames()).replace("'", "").replace('(', "").replace(')', "").replace(',',
-                                                                                                                      "")
+            bus = str(self.dss.cktelement_read_busnames()).replace("'", "").replace('(', "").replace(')', "").replace(',',"")
             curva = self.dss.loads_read_daily()
             self.dss.loadshapes_write_name(curva)
             Epv = 7.89 * 0.97 ** 2  # capacidade de geracao
